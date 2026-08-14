@@ -1,0 +1,42 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "FigJam", sans-serif;
+}
+
+#chart-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+#chart-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/* background.css
+   Repeating tile texture as a pure CSS background — no canvas, no JS.
+   Swap the two hex fills below (%23E5FEFB = path color, #f3fffe = bg color)
+   to change the scheme. Hex # must stay URL-encoded as %23 inside the SVG string.
+*/
+
+.bg-texture {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-color: #f3fffe; /* fallback / gaps color */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 365.34 274.08' width='60' height='45'%3E%3Cpath fill='%23E5FEFB' d='M183.8,45.57C183.8,20.35,163.36-.08,138.14-.08H46.8C21.58-.08,1.14,20.36,1.14,45.57h45.67C21.58,45.57,1.14,66,1.14,91.21v45.65h182.67v-45.65h-45.67c25.22,0,45.67-20.43,45.67-45.64Z'/%3E%3Cpath fill='%23E5FEFB' d='M183.8,228.34c0-25.21-20.45-45.65-45.67-45.65h45.67c0-25.21-20.45-45.65-45.67-45.65H46.8c-25.23,0-45.67,20.44-45.67,45.65v45.65h0c0,25.22,20.45,45.65,45.67,45.65h91.34c25.22,0,45.67-20.45,45.67-45.65Z'/%3E%3Cpath fill='%23E5FEFB' d='M366.22,91.2c0-25.21-20.45-45.65-45.67-45.65h45.67C366.22,20.35,345.77-.09,320.55-.09h-91.34c-25.23,0-45.67,20.44-45.67,45.65v45.65h0c0,25.22,20.45,45.65,45.67,45.65h91.34c25.22,0,45.67-20.45,45.67-45.65Z'/%3E%3Cpath fill='%23E5FEFB' d='M366.22,182.96c0-25.21-20.45-45.65-45.67-45.65h-91.34c-25.22,0-45.67,20.44-45.67,45.65h45.67c-25.22,0-45.67,20.43-45.67,45.65v45.65h182.67v-45.65h-45.67c25.22,0,45.67-20.43,45.67-45.64Z'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 135px; /* tile size on screen — adjust to taste */
+}
+
+/* Optional: slightly larger tiles on wider screens */
+@media (min-width: 1024px) {
+    .bg-texture {
+        background-size: 250px 182.5px;
+    }
+}
