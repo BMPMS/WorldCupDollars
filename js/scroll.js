@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-function initScrollAnimation(margin, groupAnimationHeight) {
+function initScrollAnimation(margin, groupAnimationHeight, viewBoxGroupAnimationHeight) {
     const chartContainer = document.querySelector("#chart-container");
     const svg = chartContainer.querySelector("svg");
 
@@ -30,9 +30,8 @@ function initScrollAnimation(margin, groupAnimationHeight) {
         scrollTrigger: {
             trigger: chartContainer,
             start: "top top",
-            end: `+=${6000}`,
+            end: `+=${8 * H}`,
             pin: stage,
-            pinSpacing: false,
             scrub: true,
             markers: false
         }
@@ -94,7 +93,7 @@ function initScrollAnimation(margin, groupAnimationHeight) {
 
         // Step 8 - reveal links + next nodes (by moving animationRect)
         timeline.to(roundsGroup.querySelectorAll(".animationRect"), {
-            y: groupAnimationHeight,
+            y: viewBoxGroupAnimationHeight,
             height: 0,
             duration: stepDuration * 3
         });

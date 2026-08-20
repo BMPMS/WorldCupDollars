@@ -1,6 +1,7 @@
 let chartData = {};
 let currentWidth = 0;
 let animationGroupHeight = 0;
+let animationWidthRatio = 1;
 
 const colors = {
     playerIn: "#009A4E",
@@ -14,11 +15,11 @@ const colors = {
 };
 
 const margin = {
-    left: 125,
-    right: 125,
+    left: 140,
+    right: 140,
     top: 220,
-    bottom: 90,
-    gap: 160,
+    bottom: 220,
+    gap: 150,
     out: 65,
     middle: 140 - (65 * 2)/2
 }
@@ -149,9 +150,11 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
     const percentFormat = d3.format(".0%");
     const dateFormat = d3.timeFormat("%d %b %Y");
     const width = 1000;
-    const multiple = windowWidth > width ? 3 : 6;
+    const multiple =6;
     const height = width * multiple;
     const nodeWidth = multiple * 8;
+    animationWidthRatio = windowWidth >= 1000 ? 1 : windowWidth/width;
+
 
     let svg = div.select(".sankeyBaseSvg");
 
@@ -172,12 +175,12 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
     }
 
     svg.attr("viewBox", `0 0 ${width},${height}`)
-        .attr("width",`${windowWidth}px`)
-        .attr("height",`${windowWidth * multiple}px`);
+      //  .attr("width",`${windowWidth}px`)
+      //  .attr("height",`${windowWidth * multiple}px`);
 
     div
-        .style("width",`${windowWidth}px`)
-        .style("height",`${windowWidth * multiple}px`);
+      //  .style("width",`${windowWidth}px`)
+       // .style("height",`${windowWidth * multiple}px`);
 
     const largeFontSize = 32;
     const midFontSize = 24;
@@ -846,7 +849,8 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
          currentWidth = clientWidth;
         // will have to restart the animation also
         drawSankey(div,chartData, clientWidth,clientHeight);
-        initScrollAnimation(margin, animationGroupHeight);
+        console.log(animationGroupHeight)
+        initScrollAnimation(margin, animationGroupHeight * animationWidthRatio, animationGroupHeight);
     }
 
 }
