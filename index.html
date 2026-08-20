@@ -3,17 +3,40 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>World Cup Dollars</title>
+<title>World Cup 2026 - How far did the money go?</title>
+  <script src="
+https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js
+"></script>
+
+  <link rel="icon" type="image/svg+xml" href="https://bmdata.co.uk/favicon.svg" />
+  <link rel="shortcut icon" href="https://bmdata.co.uk/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://bmdata.co.uk/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
   <script src="js/d3.min.js"></script>
-  <script src="./js/wcDollars.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Russo+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wcDollars.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="./js/scroll.js"></script>
+  <script src="./js/wcDollars.js"></script>
 
 </head>
-<body class="bg-texture">
+<body>
+<div class="bg-texture"></div>
+<div class="header">
+  <div class="title">FIFA World Cup 2026</div>
+  In June 2026, I had the pleasure of developing a <a target="_blank" rel="noopener noreferrer" href="https://mundial2026.keydata.studio/">scrolling story</a> about the impending World Cup for <a target="_blank" rel="noopener noreferrer" href="https://www.keydata.studio/"> Key Data Studio</a>.<br><br>
+
+    One key finding was that the 1,248 players competing were valued at an astounding total of <span class="headerEnd">19 billion</span> US dollars.<br><br>
+
+    This viz is quick comparison on far this money lasted over the course of the competition.<br><br>
+
+  <div class="headerEnd">scroll, explore, discover</div>
+</div>
 
 <div id="chart-container">
 

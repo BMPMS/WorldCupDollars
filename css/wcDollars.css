@@ -1,9 +1,92 @@
-body, html {
+body, html, svg {
     margin: 0;
     padding: 0;
-    font-family: "FigJam", sans-serif;
+    font-family: "Russo One", sans-serif;
+
 }
 
+*:not(a) {
+    cursor: default;
+    pointer-events: none;
+}
+
+
+a {
+    cursor: pointer;
+    pointer-events: auto;
+    color: inherit;
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+    margin-bottom: 28px;
+    color: #125746;
+    text-align: center;
+}
+
+.header {
+    padding: 15px;
+    width: calc(100% - 30px);
+    max-width: 800px;
+    font-size: 19px;
+    line-height: 1.25;
+    margin: 0 auto;
+    text-align: center;
+    color: #3A6E63; /* lighter tint of the title color, same family */
+}
+
+.headerEnd {
+    margin-top: 30px;
+    font-size: 28px;
+    color: #56B8D2;
+}
+
+
+.header p {
+    margin-bottom: 20px;
+}
+
+.header p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    .header {
+        font-size: 17px;
+        padding: 10px;
+    }
+    .header p {
+        margin-bottom: 16px;
+    }
+    .headerEnd {
+        font-size: 24px;
+        color: #56B8D2;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 26px;
+        margin-top: 5px;
+        margin-bottom: 16px;
+    }
+    .header {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    .headerEnd {
+        font-size: 20px;
+    }
+}
 #chart-container {
     width: 100%;
     max-width: 1000px;
@@ -12,9 +95,7 @@ body, html {
 }
 
 #chart-container svg {
-    display: block;
     width: 100%;
-    height: auto;
 }
 /* background.css
    Repeating tile texture as a pure CSS background — no canvas, no JS.
