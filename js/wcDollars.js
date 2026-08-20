@@ -15,13 +15,12 @@ const colors = {
 };
 
 const margin = {
-    left: 140,
-    right: 140,
+    left: 150,
+    right: 150,
     top: 220,
     bottom: 220,
-    gap: 150,
-    out: 65,
-    middle: 140 - (65 * 2)/2
+    gap: 130,
+    out: 60,
 }
 
 
@@ -63,7 +62,7 @@ const getPlayerNodes = (players, data,nodeWidth,groupIndex) => {
     const sorted = players.sort((a, b) => d3.descending(a.type, b.type));
     const extraRounds = (totalRounds - 1)  - groupIndex;
     const finalRectYForward =  (extraRounds  * animationGroupHeight);
-    const finalRectYBack = -((nodeWidth + 10) * extraRounds )
+    const finalRectYBack = -((nodeWidth + 15) * extraRounds )
     const nodes = [];
     const top5Value = data.top5Teams.count;
     sorted.forEach((node) => {
@@ -95,7 +94,7 @@ const getValueNodes = (players, data,nodeWidth,groupIndex) => {
     const sorted = players.sort((a, b) => d3.descending(a.type, b.type));
     const extraRounds = (totalRounds - 1) - groupIndex;
     const finalRectYForward = (extraRounds  * animationGroupHeight);
-    const finalRectYBack = -((nodeWidth + 10) * extraRounds );
+    const finalRectYBack = -((nodeWidth + 15) * extraRounds );
     const nodes = [];
     const top5Value = data.top5Players.value;
     sorted.forEach((node) => {
@@ -182,9 +181,9 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
       //  .style("width",`${windowWidth}px`)
        // .style("height",`${windowWidth * multiple}px`);
 
-    const largeFontSize = 32;
+    const largeFontSize = 30;
     const midFontSize = 24;
-    const smallFontSize = 14;
+    const smallFontSize = 18;
 
     const { playerNodes, playerLinks, valueNodes, valueLinks } = sankeyData;
 
@@ -199,7 +198,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("font-size",smallFontSize)
         .attr("fill",colors.text)
         .attr("x", margin.left + sankeyHeight * 2 + margin.gap )
-        .attr("y",margin.top - 24)
+        .attr("y",margin.top - smallFontSize * 1.9)
         .text("Top 5")
 
     svg.select(".topPlayers2")
@@ -209,7 +208,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("font-size",smallFontSize)
         .attr("fill",colors.text)
         .attr("x", margin.left + sankeyHeight * 2 + margin.gap )
-        .attr("y",margin.top - 10)
+        .attr("y",margin.top - smallFontSize * 0.8)
         .text("Players")
 
     svg.select(".topTeams")
@@ -219,7 +218,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("font-size",smallFontSize)
         .attr("fill",colors.text)
         .attr("x", margin.left )
-        .attr("y",margin.top - 24)
+        .attr("y",margin.top - smallFontSize * 1.9)
         .text("Top 5")
 
     svg.select(".topTeams2")
@@ -229,7 +228,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("font-size",smallFontSize)
         .attr("fill",colors.text)
         .attr("x", margin.left)
-        .attr("y",margin.top - 10)
+        .attr("y",margin.top - smallFontSize * 0.8)
         .text("Teams")
 
 
@@ -286,7 +285,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
             : playerLinks[0].target.x0 - playerLinks[0].source.x0;
 
 
-    const finalTop = margin.top + ((totalRounds-1) * animationGroupHeight) - ((totalRounds-1) * (nodeWidth + 10)) - nodeWidth * 0.3;
+    const finalTop = margin.top + ((totalRounds-1) * animationGroupHeight) - ((totalRounds-1) * (nodeWidth + 15)) - nodeWidth * 0.3;
 
     svg.select(".finalPlayersLabel")
         .style("opacity", 0)
@@ -625,7 +624,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("y",  (d) => d.y + nodeWidth/2)
         .style("dominant-baseline", "middle")
         .attr("text-anchor", "middle")
-        .attr("font-size", midFontSize)
+        .attr("font-size", smallFontSize )
         .attr("fill",colors.title)
         .text((d) => allRounds[d.groupIndex].name);
 
@@ -685,6 +684,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
                     last: (players.length - 1) === i,
                     groupIndex: d.groupIndex,
                     finalRectY: d.finalRectY,
+                    extraY: players.length > 1 ? -smallFontSize/4 : 0,
                     phrase,
                 }));
                 return result;
@@ -698,7 +698,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
             return enter;
         });
 
-    topPlayersGroup.attr("transform",(d) => `translate(0,${(d.index + 0.5) *  (smallFontSize * 1.2)})`)
+    topPlayersGroup.attr("transform",(d) => `translate(0,${d.extraY + (d.index + 0.5) *  (smallFontSize * 1.1)})`)
 
     topPlayersGroup.select(".playerLabel")
         .attr("data-y",(d) =>d.finalRectY)
@@ -715,7 +715,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("data-group-index", (d) => d.groupIndex)
         .attr("id", "nodeLabelMove")
         .style("dominant-baseline", "middle")
-        .attr("y", smallFontSize * 1.2)
+        .attr("y", smallFontSize * 1.1)
         .attr("text-anchor", "left")
         .attr("font-size", smallFontSize)
         .attr("fill",colors.out)
@@ -742,6 +742,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
                     phrase,
                     groupIndex: d.groupIndex,
                     finalRectY: d.finalRectY,
+                    extraY: teams.length > 1 ? -smallFontSize/4 : 0
                 }));
                 return result;
             }
@@ -763,7 +764,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
             return enter;
         });
 
-    topTeamsGroup.attr("transform",(d) => `translate(0,${(d.index + 0.5) * (smallFontSize * 1.2)})`)
+    topTeamsGroup.attr("transform",(d) => `translate(0,${d.extraY + (d.index + 0.5) * (smallFontSize * 1.2)})`)
 
 
     topTeamsGroup
@@ -787,8 +788,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
         .attr("data-group-index", (d) => d.groupIndex)
         .attr("id", "nodeLabelMove")
         .attr("r", circleRadius)
-        .attr("cx", (d) => -(measureWidth(d.team,smallFontSize) +12 + circleRadius))
-        .attr("cy", -1)
+        .attr("transform", (d) => `translate(${-(measureWidth(d.team,smallFontSize + 1) + 8 + (d.team === "Portugal" ? 5 : 0) + circleRadius)},${-2})`)
         .attr("fill", (d) => `url(#top5CountryImage${d.flagCode})`);
 
     topTeamsGroup.select(".teamLabel")
