@@ -150,7 +150,7 @@ const drawSankey = (div, data, windowWidth, windowHeight) => {
     const percentFormat = d3.format(".0%");
     const dateFormat = d3.timeFormat("%d %b %Y");
     const width = 1000;
-    const multiple =6;
+    const multiple = 6;
     const height = width * multiple;
     const nodeWidth = multiple * 8;
     animationWidthRatio = windowWidth >= 1000 ? 1 : windowWidth/width;

@@ -41,7 +41,7 @@ function initScrollAnimation(margin, groupAnimationHeight, viewBoxGroupAnimation
         const roundsGroup = svg.querySelector(`#roundsGroup${i}`);
 
         // Hold for 0.5H — split into 5 reveal steps, each 0.125H
-        const stepDuration = 0.5 / 5;
+        const stepDuration = 1 / 5;
 
         // Step 1 - nodeGroup
         timeline.to(roundsGroup.querySelectorAll(".nodeGroup"), {
